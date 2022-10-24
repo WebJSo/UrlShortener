@@ -27,4 +27,4 @@ UnitTests
 UnitTests project uses xUnit. ShortUrlExtensions and ShortUrlService are tested using ShortUrlTestRepo to ensure logic, URL formatting and validation standards are maintained.
 
 Note:
-When starting the project ShortUrlLightDb.db LightDb should be created in the root of the MVC project.
+When starting the project ShortUrlLightDb.db LightDb should automatically be created in the root of the MVC project.
