@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Manage";
+}
+
+@model ManageUrlViewModel
+
+<h3 class="display-4 mb-4">
+    Manage URL Shortener
+</h3>
+
+@if (Model != null && Model.ShortUrls != null && Model.ShortUrls.Any())
+{
+    <div class="row">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-6">Target URL</th>
+                    <th class="col-4">Short URL</th>
+                    <th class="col-1 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var shortUrlItem in Model.ShortUrls)
+                {
+                    string shortUrl = Model.BaseUrl + shortUrlItem.ShortUrl;
+                    <tr>
+                        <td>
+                            <form asp-controller="ShortUrl" asp-action="@nameof(ShortUrlController.UpdateUrl).ToLower()" method="post" class="text-center">
+                                <input type="hidden" name="id" id="id" value="@shortUrlItem.Id" />
+                                <div class="row form-group">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control form-control-lg col-12" name="url" id="url" value="@shortUrlItem.Url" />
+                                    </div>
+                                    <div class="col-3 mt-1">
+                                        <button type="submit" class="btn btn-primary col-12">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-8 mt-2">
+                                    <a href="@shortUrl" class="short-url" target="_blank">@shortUrl</a>
+                                </div>
+                                <div class="col-4 mt-1">
+                                    <button type="button" class="btn btn-info btn-copy">Copy</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <form asp-controller="ShortUrl" asp-action="@nameof(ShortUrlController.RemoveUrl).ToLower()" method="post" class="text-center">
+                                <input type="hidden" name="id" id="id" value="@shortUrlItem.Id" />
+                                <button type="submit" class="close float-none mt-1 text-danger" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> }
+else
+{
+    <div class="row text-center">
+        <div class="col-12">
+            Sorry, no results.
+        </div>
+    </div>
+}
+
