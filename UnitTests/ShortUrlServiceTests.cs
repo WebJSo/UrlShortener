@@ -169,7 +169,7 @@ namespace UnitTests
             // get by id with first id and check updated url or original url based on shouldUpdate
             Assert.Equal(shouldUpdate ? newUrl : url, _testRepo.GetById(id1).Url);
 
-            // expect hasUpdated to be false
+            // expect shouldUpdate to match hasUpdated
             Assert.Equal(shouldUpdate, hasUpdated);
         }
     }
