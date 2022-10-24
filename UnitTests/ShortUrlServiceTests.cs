@@ -9,7 +9,7 @@ using Repos.Interfaces;
 namespace UnitTests
 {
     /// <summary>
-    /// Test IShortUrlService public methods against difference scenarios using ShortUrlTestRepo for CRUD operations
+    /// Test IShortUrlService public methods against different scenarios using ShortUrlTestRepo for CRUD operations
     /// </summary>
     public class ShortUrlServiceTests
     {
